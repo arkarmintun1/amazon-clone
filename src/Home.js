@@ -29,7 +29,7 @@ function Home() {
                 id="1231"
                 title={product.title}
                 price={product.price}
-                rating={5}
+                rating={product.rating}
                 image={`http://localhost:4000/${product.images[0]}`}
               />
             </Grid>

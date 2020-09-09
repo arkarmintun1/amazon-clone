@@ -1,12 +1,14 @@
-import React from "react";
-import "./Product.css";
-import { useStateValue } from "./StateProvider";
+import React from 'react';
+import './Product.css';
+import { useStateValue } from './StateProvider';
+import StarRoundedIcon from '@material-ui/icons/StarRounded';
+import StarBorderRoundedIcon from '@material-ui/icons/StarBorderRounded';
 
 function Product({ id, title, image, price, rating }) {
   const [{ basket }, dispatch] = useStateValue();
   const addToBasket = () => {
     dispatch({
-      type: "ADD_TO_BASKET",
+      type: 'ADD_TO_BASKET',
       item: { id, title, price, rating, image },
     });
   };
@@ -20,11 +22,11 @@ function Product({ id, title, image, price, rating }) {
           </small>
         </p>
         <div className="product__rating">
-          {Array(rating)
+          {Array(5)
             .fill()
-            .map((_, i) => (
-              <p>🌟</p>
-            ))}
+            .map((_, i) =>
+              i <= rating - 1 ? <StarRoundedIcon /> : <StarBorderRoundedIcon />
+            )}
         </div>
       </div>
       <img src={image} alt="" />
