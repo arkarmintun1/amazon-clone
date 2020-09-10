@@ -3,16 +3,18 @@ import './Home.css';
 import Product from './Product';
 import axios from './axios';
 import Grid from '@material-ui/core/Grid';
+import FlipMove from 'react-flip-move';
+import { productList } from './data';
 
 function Home() {
-  const [products, setProducts] = useState([]);
+  const [products, setProducts] = useState(productList);
 
-  useEffect(() => {
-    axios.get('/api/products').then((response) => {
-      setProducts(response.data.data);
-    });
-    console.log(products);
-  }, []);
+  // useEffect(() => {
+  //   axios.get('/api/products').then((response) => {
+  //     setProducts(response.data.data);
+  //   });
+  //   console.log(products);
+  // }, []);
 
   return (
     <div className="home">
@@ -24,13 +26,13 @@ function Home() {
         />
         <Grid container>
           {products.map((product, index) => (
-            <Grid item xs={4}>
+            <Grid item xs={4} view="grid">
               <Product
-                id="1231"
+                id={product.id}
                 title={product.title}
                 price={product.price}
                 rating={product.rating}
-                image={`http://localhost:4000/${product.images[0]}`}
+                image={`/${product.images[0]}`}
               />
             </Grid>
           ))}
